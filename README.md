@@ -30,14 +30,26 @@ python3.12+
 pip install -r requirements.txt
 ```
 
-### 2. Get Google Maps API Key
+### 2. Get Google Maps API Key (SECURE SETUP)
+
+**⚠️ IMPORTANT:** Never commit API keys to Git! Use environment variables.
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com)
-2. Create project and enable "Places API"
-3. Get API key and restrict to your IP
-4. Add to `.env` file:
+2. Create project and enable **"Places API"**
+3. Get API key and **immediately restrict it**:
+   - **API restrictions:** Select "Places API"
+   - **Application restrictions:** IP addresses → Add your public IP
+4. Set environment variable:
+```bash
+# Linux/Mac
+export GOOGLE_MAPS_API_KEY='your_key_here'
+
+# Or create .env file (recommended)
+cp .env.example .env
+# Edit .env with your key
 ```
-GOOGLE_MAPS_API_KEY=your_key_here
-```
+
+**Security Note:** The exposed key in the initial commit has been revoked. Always use environment variables!
 
 ### 3. Install & Run
 ```bash
@@ -169,6 +181,34 @@ categories = [
 3. Commit changes (`git commit -m 'Add amazing feature'`)
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
+
+## 🔒 Security Best Practices
+
+### API Key Security
+1. **Never commit API keys** to version control
+2. **Use environment variables** or `.env` files (added to `.gitignore`)
+3. **Restrict API keys** to specific IPs and APIs
+4. **Rotate keys regularly** and revoke exposed keys immediately
+5. **Set budget alerts** in Google Cloud Console
+
+### What Happened & Lessons Learned
+- **Initial commit** contained a hardcoded API key (security vulnerability)
+- **Google detected** and notified us (their security systems work!)
+- **We immediately:** 
+  - Revoked the exposed key
+  - Removed hardcoded keys from code
+  - Implemented environment variable based configuration
+  - Updated documentation with security best practices
+
+### Secure Configuration Example
+```python
+# SECURE: Use environment variables
+import os
+api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+
+# INSECURE: Never do this!
+api_key = "AIzaSy..."  # Hardcoded key
+```
 
 ## 📄 License
 

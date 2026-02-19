@@ -16,12 +16,14 @@ class GoogleMapsPlacesScraper:
         # Get API key from environment variable if not provided
         if api_key is None:
             api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
-            if not api_key or api_key == "YOUR_API_KEY_HERE":
-                raise ValueError(
-                    "Google Maps API key not found. "
-                    "Set GOOGLE_MAPS_API_KEY environment variable or pass api_key parameter. "
-                    "Get key from: https://console.cloud.google.com"
-                )
+        
+        # Check if API key is valid (not None, not empty, not placeholder)
+        if not api_key or api_key.strip() == "" or "YOUR_API_KEY" in api_key:
+            raise ValueError(
+                "Google Maps API key not found or invalid. "
+                "Set GOOGLE_MAPS_API_KEY environment variable or pass api_key parameter. "
+                "Get key from: https://console.cloud.google.com"
+            )
         
         self.api_key = api_key
         self.base_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
@@ -159,15 +161,39 @@ class GoogleMapsPlacesScraper:
         print(f"📊 Stats: {websites_found}/{len(businesses)} have websites ({websites_found/len(businesses)*100:.1f}%)")
 
 def test_with_mock_api():
-    """Test with mock data (replace with real API key)"""
+    """Test the scraper - requires valid API key"""
     print("=== GOOGLE MAPS PLACES API SCRAPER ===")
-    print("NOTE: Replace 'YOUR_API_KEY' with actual Google Maps API key")
-    print("Get key from: https://console.cloud.google.com")
-    print("Enable 'Places API' and restrict to your IP")
     print("")
     
-    # Get API key from environment variable or use placeholder
-    api_key = os.environ.get("GOOGLE_MAPS_API_KEY", "YOUR_API_KEY_HERE")
+    try:
+        # Try to create scraper - will use environment variable
+        scraper = GoogleMapsPlacesScraper()
+        print("✅ API key found in environment variable")
+        print("")
+        
+        # Test with a small search
+        print("Testing with small search...")
+        businesses = scraper.search_businesses('restaurants', max_results=2)
+        
+        if businesses:
+            print(f"✅ Success! Found {len(businesses)} businesses")
+            scraper.save_to_csv(businesses, 'data/test_output.csv')
+        else:
+            print("⚠️  No businesses found (might be API restrictions)")
+            
+    except ValueError as e:
+        print("❌ API key not configured:")
+        print(f"   {e}")
+        print("")
+        print("🔧 SETUP INSTRUCTIONS:")
+        print("   1. Get API key from: https://console.cloud.google.com")
+        print("   2. Enable 'Places API'")
+        print("   3. Restrict key to your IP address")
+        print("   4. Set environment variable:")
+        print("      export GOOGLE_MAPS_API_KEY='your_key_here'")
+        print("   5. Or create .env file with GOOGLE_MAPS_API_KEY=your_key")
+        print("")
+        print("📁 Sample .env file created: .env.example")
     
     if api_key == "YOUR_API_KEY_HERE":
         print("❌ Please get a Google Maps API key from:")
