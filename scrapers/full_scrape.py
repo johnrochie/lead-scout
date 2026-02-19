@@ -6,6 +6,11 @@ Get 100+ businesses across multiple categories
 
 import time
 import random
+import os
+import sys
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scrapers.google_maps_api import GoogleMapsPlacesScraper
 
 def main():
@@ -13,9 +18,8 @@ def main():
     print("Getting 100+ businesses across 10 categories...")
     print("")
     
-    # Initialize scraper with real API key
-    api_key = "AIzaSyDwgZi7jH9b4tZ6fl840AFGoE2iHefdJr8"
-    scraper = GoogleMapsPlacesScraper(api_key)
+    # Initialize scraper - will use environment variable
+    scraper = GoogleMapsPlacesScraper()
     
     # Dublin business categories
     categories = [

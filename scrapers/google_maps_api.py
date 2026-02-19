@@ -8,10 +8,21 @@ import requests
 import time
 import csv
 import json
+import os
 from typing import List, Dict, Optional
 
 class GoogleMapsPlacesScraper:
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str = None):
+        # Get API key from environment variable if not provided
+        if api_key is None:
+            api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+            if not api_key or api_key == "YOUR_API_KEY_HERE":
+                raise ValueError(
+                    "Google Maps API key not found. "
+                    "Set GOOGLE_MAPS_API_KEY environment variable or pass api_key parameter. "
+                    "Get key from: https://console.cloud.google.com"
+                )
+        
         self.api_key = api_key
         self.base_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
         self.details_url = "https://maps.googleapis.com/maps/api/place/details/json"
@@ -148,13 +159,15 @@ class GoogleMapsPlacesScraper:
         print(f"📊 Stats: {websites_found}/{len(businesses)} have websites ({websites_found/len(businesses)*100:.1f}%)")
 
 def test_with_mock_api():
-    """Test with real API key"""
+    """Test with mock data (replace with real API key)"""
     print("=== GOOGLE MAPS PLACES API SCRAPER ===")
-    print("Using REAL Google Maps API key")
+    print("NOTE: Replace 'YOUR_API_KEY' with actual Google Maps API key")
+    print("Get key from: https://console.cloud.google.com")
+    print("Enable 'Places API' and restrict to your IP")
     print("")
     
-    # Real API key from environment or direct
-    api_key = "AIzaSyDwgZi7jH9b4tZ6fl840AFGoE2iHefdJr8"
+    # Get API key from environment variable or use placeholder
+    api_key = os.environ.get("GOOGLE_MAPS_API_KEY", "YOUR_API_KEY_HERE")
     
     if api_key == "YOUR_API_KEY_HERE":
         print("❌ Please get a Google Maps API key from:")
