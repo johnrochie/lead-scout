@@ -1,0 +1,3 @@
+business_name,category,phone,address,website,has_website,score,priority,notes,estimated_value
+Sample Restaurant Dublin,restaurant,+353 1 123 4567,"123 Main St, Dublin 1, Ireland",http://samplerestaurant.ie,YES,18/30,MEDIUM,Website exists but could be improved,€500
+Example Dental Clinic,dentist,+353 1 987 6543,"45 Example St, Dublin 2, Ireland",NO WEBSITE,NO,0/30,HIGHEST,No website - perfect lead for outreach,€500 + €200/month

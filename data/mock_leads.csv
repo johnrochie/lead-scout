@@ -1,0 +1,11 @@
+name,address,website,phone,category,location,score,needs_website
+"O'Reilly's Traditional Pub","12 Main St, Dublin 1","http://oreillyspubdublin.com","+353 1 123 4567","pub","Dublin",8,YES
+"Modern Dental Clinic","45 Grafton St, Dublin 2","https://moderndental.ie","+353 1 987 6543","dentist","Dublin",25,NO
+"Smithfield Plumbing","3 Smithfield, Dublin 7","NO_WEBSITE","+353 86 123 4567","plumber","Dublin",0,YES
+"Vintage Cafe Dublin","28 Camden St, Dublin 2","http://vintagecafedublin.ie (2008 design)","+353 1 555 1234","cafe","Dublin",6,YES
+"Tech Solutions Ltd","15 Harcourt St, Dublin 2","https://techsolutions.ie","+353 1 777 8888","IT","Dublin",28,NO
+"Dublin City Hotel","22 O'Connell St, Dublin 1","http://dublincityhotel.com (Flash site)","+353 1 222 3333","hotel","Dublin",4,YES
+"Family Law Solicitors","8 Merrion Sq, Dublin 2","https://familylawsolicitors.ie","+353 1 444 5555","legal","Dublin",27,NO
+"Budget Carpets","5 Thomas St, Dublin 8","http://budgetcarpets.ie (table layout)","+353 1 666 7777","retail","Dublin",3,YES
+"Premium Gym Dublin","30 Leeson St, Dublin 2","https://premiumgymdublin.ie","+353 1 888 9999","fitness","Dublin",26,NO
+"Joe's Electric","17 Capel St, Dublin 1","NO_WEBSITE","+353 87 654 3210","electrician","Dublin",0,YES

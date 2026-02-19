@@ -1,0 +1,4 @@
+name,address,website,phone,category,location,rating,reviews,place_id,source
+Sample Restaurant Dublin,"123 Main St, Dublin 1, Ireland",http://samplerestaurant.ie,+353 1 123 4567,restaurant,"Dublin, Ireland",4.5,150,sample_1,google_places_api
+Example Dental Clinic,"45 Example St, Dublin 2, Ireland",,+353 1 987 6543,dentist,"Dublin, Ireland",4.2,89,sample_2,google_places_api
+Demo Plumbing Services,"3 Demo Lane, Dublin 7, Ireland",http://demoplumbing.ie,+353 86 123 4567,plumber,"Dublin, Ireland",4.0,45,sample_3,google_places_api
